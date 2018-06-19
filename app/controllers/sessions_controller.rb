@@ -5,11 +5,12 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(email: params[:email])
-    if user and user.authenticate(params[:email])
-      sessions[:user_id] = user.id
-      redirect_to admin_url
+    if user.nil?
+      redirect_to login_url, alert: "Invalid Name or email"
     else
-      redirect_to login_url, alert: "Login Failed"
+      sessions[:user_id] = user.id # signing in
+      redirect_to admin_url
+
     end
   end
 

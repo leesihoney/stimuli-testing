@@ -5,7 +5,9 @@ class User < ApplicationRecord
   # validations:
 	validates_presence_of :first_name, :last_name
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-	validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: true
+	validates :email, :presence       => true,
+            :format                 => { :with => VALID_EMAIL_REGEX },
+            :uniqueness             => { :case_sensitive => false}
 
 	def name
 		"#{first_name last_name}"

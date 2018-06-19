@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  donation_type: 1
+  recipientA_id: 1
+  recipientB_id: 1
+
+two:
+  donation_type: 1
+  recipientA_id: 1
+  recipientB_id: 1

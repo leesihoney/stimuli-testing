@@ -1,0 +1,52 @@
+<%= form_with(model: recipient, local: true) do |form| %>
+  <% if recipient.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(recipient.errors.count, "error") %> prohibited this recipient from being saved:</h2>
+
+      <ul>
+      <% recipient.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :organization_size %>
+    <%= form.number_field :organization_size %>
+  </div>
+
+  <div class="field">
+    <%= form.label :food_access %>
+    <%= form.number_field :food_access %>
+  </div>
+
+  <div class="field">
+    <%= form.label :income_level %>
+    <%= form.number_field :income_level %>
+  </div>
+
+  <div class="field">
+    <%= form.label :poverty_level %>
+    <%= form.number_field :poverty_level %>
+  </div>
+
+  <div class="field">
+    <%= form.label :last_donation %>
+    <%= form.number_field :last_donation %>
+  </div>
+
+  <div class="field">
+    <%= form.label :total_donation %>
+    <%= form.number_field :total_donation %>
+  </div>
+
+  <div class="field">
+    <%= form.label :travel_time %>
+    <%= form.number_field :travel_time %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

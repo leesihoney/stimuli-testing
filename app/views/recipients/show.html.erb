@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Organization size:</strong>
+  <%= @recipient.organization_size %>
+</p>
+
+<p>
+  <strong>Food access:</strong>
+  <%= @recipient.food_access %>
+</p>
+
+<p>
+  <strong>Income level:</strong>
+  <%= @recipient.income_level %>
+</p>
+
+<p>
+  <strong>Poverty level:</strong>
+  <%= @recipient.poverty_level %>
+</p>
+
+<p>
+  <strong>Last donation:</strong>
+  <%= @recipient.last_donation %>
+</p>
+
+<p>
+  <strong>Total donation:</strong>
+  <%= @recipient.total_donation %>
+</p>
+
+<p>
+  <strong>Travel time:</strong>
+  <%= @recipient.travel_time %>
+</p>
+
+<%= link_to 'Edit', edit_recipient_path(@recipient) %> |
+<%= link_to 'Back', recipients_path %>

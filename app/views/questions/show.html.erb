@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Donation type:</strong>
+  <%= @question.donation_type %>
+</p>
+
+<p>
+  <strong>Recipienta:</strong>
+  <%= @question.recipientA_id %>
+</p>
+
+<p>
+  <strong>Recipientb:</strong>
+  <%= @question.recipientB_id %>
+</p>
+
+<%= link_to 'Edit', edit_question_path(@question) %> |
+<%= link_to 'Back', questions_path %>

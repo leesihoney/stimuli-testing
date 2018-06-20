@@ -28,8 +28,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap-sass', '~> 3.0.0'
 gem 'jquery-rails'
-gem 'rails-footnotes', '>= 3.7.9', :group => :development
-gem 'simple_form'
+gem 'bootstrap', git: 'https://github.com/twbs/bootstrap-rubygem'
 
 
 # Use ActiveStorage variant

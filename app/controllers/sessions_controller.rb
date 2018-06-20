@@ -5,12 +5,18 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(email: params[:email])
-    if user.nil?
-      redirect_to login_url, alert: "Invalid Name or email"
-    else
+    if user
+      puts("user exists")
       sessions[:user_id] = user.id # signing in
       redirect_to admin_url
-
+    else
+      puts("user doesn't exist")
+      @user = User.new(email: params[:email], first_name: params[:first_name], last_name: params[:last_name])
+      if @user.save
+        redirect_to admin_url
+      else
+        redirect_to login_path, alert: "Invalid Name or email"
+      end
     end
   end
 

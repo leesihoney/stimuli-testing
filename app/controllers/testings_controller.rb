@@ -1,21 +1,58 @@
 class TestingsController < ApplicationController
+	before_action :authorize
+	
 	def index
+		user = current_user
+		userQRecs = pullTodayRecords(user.id)
+		puts(userQRecs.length)
+		# show today's latest research question
+		if userQRecs.length == 0 
+			redirect_to action: "create"
+		else
+			redirect_to action: "show"
+		end
 	end
 
 	def show
+		user = current_user
+		userQ = pullTodayRecords(user.id)
+		@userQ = userQ.last 
+		@question = Question.find_by(id: @userQ.question_id)
+		@recipientA = Recipient.find_by(id: @question.recipientA_id)
+		@recipientB = Recipient.find_by(id: @question.recipientB_id)
 	end
 
 	def create
+		puts("testings create method")
 		# create instances for recipient A, B and a question
 		@recipientA = setRecipient(Recipient.new)
 		@recipientB = setRecipient(Recipient.new)
 		@question = setQuestion(Question.new, @recipientA.id, @recipientB.id)
 
 		# make a new user_question table
-		if logged_in?
-			@user = current_user
-			questionNum = findQuestionNum(@question, @user.id)
+		@user = current_user
+		puts(@user.id)
+		records = pullTodayRecords(@user.id)
+		questionNum = pullTodayRecords.length+1
 
+		if questionNum < 101  
+			@userQuestion = UserQuestion.create(user_id: @user.id, question_id: @question.id, recipient_choice: nil, question_num: questionNum)
+			@userQuestion.save 
+			puts("userQuestion saved")
+			@question.save
+			puts("Question saved")
+			@recipientA.save
+			puts("recipientA saved")
+			@recipientB.save
+			puts("recipientB saved")
+			if @userQuestion.save && @question.save && @recipientA.save && @recipeintB.save
+				render 'show'
+			else
+				redirect_to errors_path alert: "Errors in creating questions!"
+			end
+		else
+			redirect_to results_path alert: "You finished all the questions!"			end
+		end
 	end
 
 	private
@@ -78,13 +115,19 @@ class TestingsController < ApplicationController
 			return 1
 		else
 			return ActiveRecord::Base.connection.exec_query("SELECT question_num FROM user_questions WHERE user_id = uid and created_at.year = today.year and created_at.month = today.month and created_at.day = today.day and recipient_choice = nil")
+		end
+	end
 
+	def pullTodayRecords(uid)
+		potentialRecords = Array.new
+		today = Date.today
+		records = UserQuestion.where({user_id: uid}).order(:question_num)
+		records.each do |record|
+			recordDate = record.created_at
+			if recordDate.year == today.year and recordDate.month == today.month and recordDate.day == today.day
+				potentialRecords.push(record)
+			end
+		end
+		return potentialRecords
+	end
 
-
-
-
-		
-
-
-
-end

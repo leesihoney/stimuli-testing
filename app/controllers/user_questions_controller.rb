@@ -24,6 +24,7 @@ class UserQuestionsController < ApplicationController
   # POST /user_questions
   # POST /user_questions.json
   def create
+    
     @user_question = UserQuestion.new(user_question_params)
 
     respond_to do |format|

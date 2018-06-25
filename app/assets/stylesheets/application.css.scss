@@ -13,19 +13,23 @@
 
  */
 
-@import 'bootstrap';
+@import "bootstrap";
 
 
 @import url(http://fonts.googleapis.com/css?family=Roboto:400);
+
 body {
   background-color:#fff;
   -webkit-font-smoothing: antialiased;
   font: normal 14px Roboto,arial,sans-serif;
+
 }
 
 .container {
     padding: 25px;
-    position: fixed;
+    height: auto;
+    overflow-y: scroll;
+
 }
 
 .form-login {
@@ -85,4 +89,18 @@ nav h1{
 	background-position: 50% 50%;
 	background-size: cover;
 	color: #ffffff;
+}
+
+.donation {
+	width: 80%;
+	height: 40%;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.imagePic {
+	width: 40%;
+	height: 40%;
+	display: block;
 }

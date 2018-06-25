@@ -4,7 +4,17 @@ class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.json
   def index
-    @questions = Question.all
+    user_id = current_user.id
+    record = todayRecord(user_id)
+    if record.length!=0 && record.length <= 100
+      @question = record.last
+      @recipientA = Recipient.find_by(@question.recipientA_id)
+      @recipientB = Recipient.find_by(@question.recipientB_id)
+    elsif record.length > 100
+      redirect_to results_path, notice: "Thank you!"
+    else
+      puts("Will not work in here")
+    end
   end
 
   # GET /questions/1
@@ -14,7 +24,11 @@ class QuestionsController < ApplicationController
 
   # GET /questions/new
   def new
-    @question = Question.new
+    user_id = current_user.id
+    q_num = todayRecord(user_id).length+1
+    @recipientA = setRecipient(Recipient.new)
+    @recipientB = setRecipient(Recipient.new)
+    @question = Question.create(question_num: q_num, user_id: user_id, donation_type: [*0..1].sample(1).first, recipientA_id: @recipientA.id, recipientB_id: @recipientB.id)
   end
 
   # GET /questions/1/edit
@@ -24,30 +38,40 @@ class QuestionsController < ApplicationController
   # POST /questions
   # POST /questions.json
   def create
-    @question = Question.new(question_params)
-
-    respond_to do |format|
-      if @question.save
-        format.html { redirect_to @question, notice: 'Question was successfully created.' }
-        format.json { render :show, status: :created, location: @question }
-      else
-        format.html { render :new }
-        format.json { render json: @question.errors, status: :unprocessable_entity }
-      end
+    # @question = Question.new(question_params)
+    user_id = current_user.id
+    # next question number
+    q_num = todayRecord(user_id).length+1
+    @recipientA = setRecipient(Recipient.new)
+    @recipientB = setRecipient(Recipient.new)
+    @question = Question.create(question_num: q_num, user_id: user_id, donation_type: [*0..1].sample(1), recipientA_id: @recipientA.id, recipientB_id: @recipientB.id)
+    if @recipientA.save && @recipientB.save && @question.save
+      puts("New Question created")
+      redirect_to @question
+    else
+      puts("New Question is not created")
+      redirect_to errors_path alert: "Error creating a question"
     end
+
+    # respond_to do |format|
+    #   if @question.save
+    #     format.html { redirect_to @question, notice: 'Question was successfully created.' }
+    #     format.json { render :show, status: :created, location: @question }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @question.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /questions/1
   # PATCH/PUT /questions/1.json
   def update
-    respond_to do |format|
-      if @question.update(question_params)
-        format.html { redirect_to @question, notice: 'Question was successfully updated.' }
-        format.json { render :show, status: :ok, location: @question }
-      else
-        format.html { render :edit }
-        format.json { render json: @question.errors, status: :unprocessable_entity }
-      end
+    set_question
+    if @question.update(question_params)
+      redirect_to questions_path, notice: 'Question was successfully updated.'
+    else
+      redirect_to edit_questions_path, notice: "You should choose between recipient A or B"
     end
   end
 
@@ -71,4 +95,56 @@ class QuestionsController < ApplicationController
     def question_params
       params.require(:question).permit(:donation_type, :recipientA_id, :recipientB_id)
     end
+
+    def setRecipient(recipient)
+    # randomly select which question to compare
+    organizationSize = [*0..4].sample(1).first
+    travelTime = [*0..3].sample(1).first
+    foodAccess = [*0..2].sample(1).first
+    incomeLevel = [*0..5].sample(1).first
+    povertyLevel = nil
+    lastDonation = [*0..12].sample(1).first
+    totalDonation = [*0..91].sample(1).first
+    # last donation & total donation combo
+    if lastDonation == 0
+      totalDonation = 0
+    elsif totalDonation == 0
+      lastDonation = 0
+    end
+
+    # income level & poverty level combo 
+    if incomeLevel == 0
+      povertyLevel = [*2..6].sample(1).first
+    elsif incomeLevel == 1 or incomeLevel == 2
+      povertyLevel = [*0..4].sample(1).first
+    else
+      povertyLevel = [*0..2].sample(1).first
+    end
+
+    # set recipients with corresponding values
+    recipient.attributes = {
+      organization_size: organizationSize,
+      food_access: foodAccess,
+      income_level: incomeLevel,
+      poverty_level: povertyLevel,
+      last_donation: lastDonation,
+      total_donation: totalDonation,
+      travel_time: travelTime
+    }
+    return recipient
+
+  end
+
+  def todayRecord(uid)
+    possible = Array.new
+    today = Date.today
+    records = Question.where({user_id: uid})
+    records.each do |record|
+      recordDate = record.created_at
+      if (recordDate.year == today.year) && (recordDate.month == today.month) && (recordDate.day == today.day)
+        possible.push(record)
+      end
+    end
+    return possible
+  end
 end

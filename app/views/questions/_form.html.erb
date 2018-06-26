@@ -21,8 +21,14 @@
     <thead>
       <tr>
         <th></th>
-        <th> Recipient A </th>
-        <th> Recipient B </th>
+        <%= form_for(@question) do |f| %>
+        <th>
+          <%= f.submit "Recipient A", class: "btn btn-default", id: "RecipientA"%>
+        </th>
+        <th>
+          <%= f.submit "Recipient B", class: "btn btn-default", id: "RecipientB" %>
+        </th>
+        <% end %>
       </tr>
     </thead>
     <tbody>

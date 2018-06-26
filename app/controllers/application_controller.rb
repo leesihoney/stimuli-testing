@@ -16,6 +16,12 @@ class ApplicationController < ActionController::Base
   	end
   	helper_method :current_user
 
+  	def current_question
+  		@current_question ||=Question.find(session[:user_id]) if session[:user_id]
+  		rescue ActiveRecord::RecordNotFound
+  	end
+  	helper_method :current_questions
+
   	def logged_in?
     	current_user
   	end

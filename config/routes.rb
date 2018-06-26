@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   resources :recipients
   resources :questions
-  resources :user_questions
   resources :users
   resources :sessions
   resources :testing

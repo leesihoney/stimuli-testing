@@ -91,6 +91,9 @@ nav h1{
 	color: #ffffff;
 }
 
+table th{
+	text-align: center;
+}
 .donation {
 	width: 80%;
 	height: 40%;
@@ -103,4 +106,6 @@ nav h1{
 	width: 40%;
 	height: 40%;
 	display: block;
+	margin-left: auto;
+	margin-right: auto;
 }

@@ -40,17 +40,6 @@ ActiveRecord::Schema.define(version: 2018_06_22_040635) do
     t.index ["question_id"], name: "index_recipients_on_question_id"
   end
 
-  create_table "user_questions", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "question_id"
-    t.string "recipient_choice"
-    t.integer "question_num"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["question_id"], name: "index_user_questions_on_question_id"
-    t.index ["user_id"], name: "index_user_questions_on_user_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"

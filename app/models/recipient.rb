@@ -1,13 +1,6 @@
 class Recipient < ApplicationRecord
   # association
   belongs_to :question
-  attr_accessor :organization_size
-  attr_accessor :food_access
-  attr_accessor :income_level
-  attr_accessor :poverty_level
-  attr_accessor :last_donation
-  attr_accessor :total_donation
-  attr_accessor :trave_time
 
   def getSizeLinksPic
   	sizeLinks = [

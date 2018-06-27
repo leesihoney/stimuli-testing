@@ -16,14 +16,71 @@ class QuestionsController < ApplicationController
     user_id = current_user.id
     q_num = todayRecord(user_id).length+1
     if q_num<=100
-      @recipientA = setRecipient(Recipient.new)
-      @recipientB = setRecipient(Recipient.new)
-      @recipientA.save
-      @recipientB.save
-      @question = Question.create(question_num: q_num, user_id: user_id, donation_type: [*0..1].sample(1).first, recipientA_id: @recipientA.id, recipientB_id: @recipientB.id)
+      # initializing recipients
+      @recipientA = Recipient.create(
+        question_id: nil,
+        organization_size: rand(5), 
+        food_access: rand(3), 
+        income_level: rand(6),
+        poverty_level: nil,
+        last_donation: rand(13),
+        total_donation: rand(92),
+        travel_time: rand(4)
+        )
+      @recipientB = Recipient.create(
+        question_id: nil,
+        organization_size: rand(5), 
+        food_access: rand(3), 
+        income_level: rand(6),
+        poverty_level: nil,
+        last_donation: rand(13),
+        total_donation: rand(92),
+        travel_time: rand(4)
+        )
+
+      # set both recipientA and recipient B's last donation and total donation value logically 
+      if @recipientA.last_donation == 0
+        @recipientA.total_donation = 0 
+      elsif @recipientA.total_donation == 0
+        @recipientA.last_donation = 0
+      end
+
+      if @recipientB.last_donation == 0
+        @recipientB.total_donation = 0 
+      elsif @recipientB.total_donation == 0
+        @recipientB.last_donation = 0
+      end
+
+      # set both recipientA and recipient B's poverty level logically 
+
+      if @recipientA.income_level == 0
+        @recipientA.poverty_level = rand(5)+2
+      elsif @recipientA.income_level == 1 or @recipientA.income_level == 2
+        @recipientA.poverty_level = rand(5)
+      else
+        @recipientA.poverty_level = rand(3)
+      end
+
+      if @recipientB.income_level == 0
+        @recipientB.poverty_level = rand(5)+2
+      elsif @recipientB.income_level == 1 or @recipientB.income_level == 2
+        @recipientB.poverty_level = rand(5)
+      else
+        @recipientB.poverty_level = rand(3)
+      end     
+
+      @question = Question.create(question_num: q_num, user_id: user_id, donation_type: rand(2))
+      @recipientA.question_id = @question.id
+      @recipientB.question_id = @question.id
+
+      if @recipientA.save && @recipientB.save
+        @question.recipientA_id = @recipientA.id
+        @question.recipientB_id = @recipientB.id
+        @question.save
+        puts("Recipients Saved")
+      end
     else
       redirect_to results_path
-
     end
   end
 
@@ -34,14 +91,6 @@ class QuestionsController < ApplicationController
   # POST /questions
   # POST /questions.json
   def create
-    # @question = @question.new(question_params)
-    # @question.recipient_choice = 'A' if recipientA?
-    # @question.recipient_choice = 'B' if recipientB?
-    # if @question.save
-    #   redirect_to new_question_path, notice: "Question was successfully updated"
-    # else
-    #   redirect_to new_question_path, notice: "You should choose between recipient A or B"
-    # end
   end
 
   # PATCH/PUT /questions/1
@@ -49,8 +98,7 @@ class QuestionsController < ApplicationController
   def update
     @question.recipient_choice = 'A' if recipientA?
     @question.recipient_choice = 'B' if recipientB?
-    if @question.update(question_params)
-      puts(@question.recipient_choice)
+    if submit?
       redirect_to new_question_path, notice: 'Question was successfully updated.'
     else
       redirect_to errors_path, notice: "You should choose between recipient A or B"
@@ -78,56 +126,6 @@ class QuestionsController < ApplicationController
       params.permit(:donation_type, :recipientA_id, :recipientB_id, :user_id)
     end
 
-    def setRecipient(recipient)
-      # randomly select which question to compare
-      organizationSize = [*0..4].sample(1).first
-      travelTime = [*0..3].sample(1).first
-      foodAccess = [*0..2].sample(1).first
-      incomeLevel = [*0..5].sample(1).first
-      povertyLevel = nil
-      lastDonation = [*0..12].sample(1).first
-      totalDonation = [*0..91].sample(1).first
-      # last donation & total donation combo
-      if lastDonation == 0
-        totalDonation = 0
-      elsif totalDonation == 0
-        lastDonation = 0
-      end
-
-      # income level & poverty level combo 
-      if incomeLevel == 0
-        povertyLevel = [*2..6].sample(1).first
-      elsif incomeLevel == 1 or incomeLevel == 2
-        povertyLevel = [*0..4].sample(1).first
-      else
-        povertyLevel = [*0..2].sample(1).first
-      end
-
-      # set recipients with corresponding values
-      recipient.attributes = {
-        organization_size: organizationSize,
-        food_access: foodAccess,
-        income_level: incomeLevel,
-        poverty_level: povertyLevel,
-        last_donation: lastDonation,
-        total_donation: totalDonation,
-        travel_time: travelTime
-      }
-      return recipient
-    end
-
-    def todayRecord(uid)
-      possible = Array.new
-      today = Date.today
-      records = Question.where({user_id: uid})
-      records.each do |record|
-        recordDate = record.created_at
-        if (recordDate.year == today.year) && (recordDate.month == today.month) && (recordDate.day == today.day)
-          possible.push(record)
-        end
-      end
-      return possible
-    end
 
     def recipientA?
       params[:commit] == "Recipient A"
@@ -136,5 +134,10 @@ class QuestionsController < ApplicationController
     def recipientB?
       params[:commit] == "Recipient B"
     end 
+
+    def submit?
+      params[:commit] == "Submit"
+    end
+
 
 end

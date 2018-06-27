@@ -1,7 +1,7 @@
 class Question < ApplicationRecord
   # validation
   belongs_to :user
-  attr_accessor :donation_type
+  has_many :recipient
 
   def getDonationTypePic # returning string
   	foodtypeLinks = [

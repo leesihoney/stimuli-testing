@@ -10,8 +10,9 @@
   </nav>
 
   <!-- Question Part -->
+<%= form_for(@question) do |f| %>
 
-  <h1> Question <%= @question.question_num %> </h1>
+  <h1> Question <%= @question.question_num %>  <%= f.submit "Submit", class: "btn btn-primary" %> </h1>
 
   <!-- upload donation type picture -->
   <%= image_tag (@question.getDonationTypePic), :class => "donation" %>
@@ -21,14 +22,12 @@
     <thead>
       <tr>
         <th></th>
-        <%= form_for(@question) do |f| %>
         <th>
           <%= f.submit "Recipient A", class: "btn btn-default", id: "RecipientA"%>
         </th>
         <th>
           <%= f.submit "Recipient B", class: "btn btn-default", id: "RecipientB" %>
         </th>
-        <% end %>
       </tr>
     </thead>
     <tbody>
@@ -103,4 +102,5 @@
       </tr>
     </tbody>
   </table>
+<% end %>
 </div>

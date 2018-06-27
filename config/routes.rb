@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   resources :questions
   resources :users
   resources :sessions
-  resources :testing
+  resources :results
+  resources :errors
 
   get 'login' => 'sessions#new', :as => :login
   get 'logout' => 'sessions#destroy', :as => :logout

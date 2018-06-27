@@ -30,4 +30,17 @@ class ApplicationController < ActionController::Base
   	def check_login
     	redirect_to login_url, alert: "You need to log in to view this page" if current_user.nil?
   	end
+
+    def todayRecord(uid)
+      possible = Array.new
+      today = DateTime.now.utc
+      records = Question.where({user_id: uid})
+      records.each do |record|
+        recordDate = record.created_at
+        if (recordDate.year == today.year) && (recordDate.month == today.month) && (recordDate.day == today.day)
+          possible.push(record)
+        end
+      end
+      return possible
+    end
 end

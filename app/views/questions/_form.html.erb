@@ -1,32 +1,106 @@
-<%= form_with(model: question, local: true) do |form| %>
-  <% if question.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(question.errors.count, "error") %> prohibited this question from being saved:</h2>
+<p id="notice"><%= notice %></p>
 
-      <ul>
-      <% question.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<div class = "container">
+  <!-- navigation bar -->
+  <nav class="navbar navbar-light">
+    <div class="navbar-brand">
+      <%= image_tag ("412FoodRescue-logo-1.png") %>
     </div>
-  <% end %>
+    <h1> Stimuli Testing </h1>
+  </nav>
 
-  <div class="field">
-    <%= form.label :donation_type %>
-    <%= form.number_field :donation_type %>
-  </div>
+  <!-- Question Part -->
+<%= form_for(@question) do |f| %>
 
-  <div class="field">
-    <%= form.label :recipientA_id %>
-    <%= form.number_field :recipientA_id %>
-  </div>
+  <h1> Question <%= @question.question_num %>  <%= f.submit "Submit", class: "btn btn-primary" %> </h1>
 
-  <div class="field">
-    <%= form.label :recipientB_id %>
-    <%= form.number_field :recipientB_id %>
-  </div>
+  <!-- upload donation type picture -->
+  <%= image_tag (@question.getDonationTypePic), :class => "donation" %>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <!-- need to fix this button soon -->
+  <table class = "table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>
+          <%= f.submit "Recipient A", class: "btn btn-default", id: "RecipientA"%>
+        </th>
+        <th>
+          <%= f.submit "Recipient B", class: "btn btn-default", id: "RecipientB" %>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th> Recipient Organization Size </th>
+        <td> 
+          <%= image_tag (@recipientA.getSizeLinksPic), :class => "imagePic"%>
+        </td>
+        <td>
+          <%= image_tag (@recipientB.getSizeLinksPic), :class => "imagePic"%>
+        </td>
+      </tr>
+
+      <tr>
+        <th> Recipient Food Access Level </th>
+        <td>
+          <%= image_tag (@recipientA.getAccessLinksAPic), :class => "imagePic"%>
+        </td>
+        <td>
+          <%= image_tag (@recipientB.getAccessLinksBPic), :class => "imagePic"%>
+        </td>
+      </tr>
+
+      <tr>
+        <th> Recipient Income Level </th>
+        <td>
+          <%= image_tag (@recipientA.getIncomeLinksPic), :class => "imagePic"%>
+        </td>
+        <td>
+          <%= image_tag (@recipientB.getIncomeLinksPic), :class => "imagePic"%>
+        </td>
+      </tr>
+
+      <tr>
+        <th> Recipient Poverty Level </th>
+        <td>
+          <%= image_tag (@recipientA.getPovertyLinksPic), :class => "imagePic"%>
+        </td>
+        <td>
+          <%= image_tag (@recipientB.getPovertyLinksPic), :class => "imagePic"%>
+        </td>
+      </tr>
+
+      <tr>
+        <th> Last Donation Received </th>
+        <td>
+          <%= image_tag (@recipientA.getLastDonationLinksPic), :class => "imagePic"%>
+        </td>
+        <td>
+          <%= image_tag (@recipientB.getTotalDonationLinksPic), :class => "imagePic"%>
+        </td>
+      </tr>
+
+      <tr>
+        <th> Total Donation Received </th>
+        <td>
+          <%= image_tag (@recipientA.getTotalDonationLinksPic), :class => "imagePic"%>
+        </td>
+        <td>
+          <%= image_tag (@recipientB.getTotalDonationLinksPic), :class => "imagePic"%>
+        </td>
+      </tr>
+
+      <tr>
+        <th> Travel Time </th>
+        <td>
+          <%= image_tag (@recipientA.getDistLinksPic), :class => "imagePic"%>
+        </td>
+        <td>
+          <%= image_tag (@recipientB.getDistLinksPic), :class => "imagePic"%>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 <% end %>
+</div>

@@ -10,17 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_19_191350) do
+ActiveRecord::Schema.define(version: 2018_06_27_132842) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "questions", force: :cascade do |t|
     t.integer "donation_type"
-    t.integer "recipientA_id"
-    t.integer "recipientB_id"
+    t.bigint "recipientA_id"
+    t.bigint "recipientB_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.string "recipient_choice"
+    t.integer "question_num"
+    t.index ["recipientA_id"], name: "index_questions_on_recipientA_id"
+    t.index ["recipientB_id"], name: "index_questions_on_recipientB_id"
   end
 
   create_table "recipients", force: :cascade do |t|
@@ -35,17 +40,6 @@ ActiveRecord::Schema.define(version: 2018_06_19_191350) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["question_id"], name: "index_recipients_on_question_id"
-  end
-
-  create_table "user_questions", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "question_id"
-    t.string "recipient_choice"
-    t.integer "question_num"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["question_id"], name: "index_user_questions_on_question_id"
-    t.index ["user_id"], name: "index_user_questions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

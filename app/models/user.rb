@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   # associations
-  has_many :user_questions
+  has_many :questions
 
   # validations:
 	validates_presence_of :first_name, :last_name
@@ -11,6 +11,10 @@ class User < ApplicationRecord
 
 	def name
 		"#{first_name last_name}"
+	end
+
+	def all_question_ids
+		return self.user_questions.map(&:question_id)
 	end
 
 end

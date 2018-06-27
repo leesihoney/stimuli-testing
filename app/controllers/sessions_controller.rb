@@ -8,12 +8,12 @@ class SessionsController < ApplicationController
     if user
       puts("user exists")
       session[:user_id] = user.id # signing in
-      redirect_to testings_path
+      redirect_to new_question_path
     else
       puts("user doesn't exist")
       @user = User.new(email: params[:email], first_name: params[:first_name], last_name: params[:last_name])
       if @user.save
-        redirect_to testings_path
+        redirect_to new_question_path
       else
         redirect_to login_path, alert: "Invalid Name or email"
       end

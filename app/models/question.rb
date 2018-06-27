@@ -1,4 +1,13 @@
 class Question < ApplicationRecord
   # validation
-  has_many :user_questions
+  belongs_to :user
+  has_many :recipient
+
+  def getDonationTypePic # returning string
+  	foodtypeLinks = [
+    "common.jpg",
+    "lesscommon.jpg"]
+    return foodtypeLinks[donation_type]
+end
+
 end

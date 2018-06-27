@@ -1,31 +1,100 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Questions</h1>
+<div class = "container">
+  <!-- navigation bar -->
+  <nav class="navbar navbar-light">
+    <div class="navbar-brand">
+      <%= image_tag ("412FoodRescue-logo-1.png") %>
+    </div>
+    <h1> Stimuli Testing </h1>
+  </nav>
+  <% if !@question.nil? %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Donation type</th>
-      <th>Recipienta</th>
-      <th>Recipientb</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <!-- Question Part -->
 
-  <tbody>
-    <% @questions.each do |question| %>
-      <tr>
-        <td><%= question.donation_type %></td>
-        <td><%= question.recipientA_id %></td>
-        <td><%= question.recipientB_id %></td>
-        <td><%= link_to 'Show', question %></td>
-        <td><%= link_to 'Edit', edit_question_path(question) %></td>
-        <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <h1> Question <%= @question.question_num %> </h1>
 
-<br>
+  <!-- upload donation type picture -->
+  <%= image_tag ("#{@question.getDonationTypePic}") %>
 
-<%= link_to 'New Question', new_question_path %>
+  <!-- need to fix this button soon -->
+  <div class = "row">
+    <div class = "col">
+      <h2> Recipient A </h2>
+    </div>
+    <div class = "col">
+      <h2> Recipient B </h2>
+    </div>
+  </div>
+
+    <!-- organization size pic -->
+  <div class ="row" >
+    <div class = "col">
+      <%= image_tag ("#{@recipientA.getSizeLinksPic}") %>
+    </div>
+    <div class = "col">
+      <%= image_tag ("#{@recipientB.getSizeLinksPic}") %>      
+    </div>
+  </div>
+
+  <!-- food access level picture -->
+  <div class ="row" >
+    <div class = "col">
+      <%= image_tag ("#{@recipientA.getAccessLinksAPic}") %>
+    </div>
+    <div class = "col">
+      <%= image_tag ("#{@recipientB.getAccessLinksBPic}") %>
+    </div>
+  </div>
+
+  <!-- Income Level Picture -->
+  <div class ="row">
+    <div class = "col">
+      <%= image_tag ("#{@recipientA.getIncomeLinksPic}") %>
+    </div>
+    <div class = "col">
+      <%= image_tag ("#{@recipientB.getIncomeLinks}") %>
+    </div>
+  </div>
+
+  <!-- Poverty Level Picture -->
+  <div class ="row">
+    <div class = "col">
+      <%= image_tag ("#{@recipientA.getPovertyLinksPic}") %>
+    </div>
+    <div class = "col">
+      <%= image_tag ("#{@recipientB.getPovertyLinksPic}") %>
+    </div>
+  </div>
+
+  <!-- Last Donation Received Pic-->
+  <div class ="row">
+    <div class = "col">
+      <%= image_tag ("#{@recipientA.getLastDonationLinksPic}") %>
+    </div>
+    <div class = "col">
+      <%= image_tag ("#{@recipientB.getLastDonationLinksPic}") %>
+    </div>
+  </div>
+
+  <!-- Total Donation Received Pic -->
+  <div class ="row">
+    <div class = "col">
+      <%= image_tag ("#{@recipientA.getTotalDonationLinksPic}") %>
+    </div>
+    <div class = "col">
+      <%= image_tag ("#{@recipientB.getTotalDonationLinksPic}") %>
+    </div>
+  </div>
+
+  <!-- Travel Time Pics -->
+  <div class ="row">
+    <div class = "col">
+      <%= image_tag ("#{@recipientA.getDistLinksPic}") %>
+    </div>
+    <div class = "col">
+      <%= image_tag ("#{@recipientB.getDistLinksPic}") %>
+    </div>
+  </div>
+  <% end %>
+</div>

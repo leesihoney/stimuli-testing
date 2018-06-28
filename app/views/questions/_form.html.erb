@@ -12,7 +12,14 @@
   <!-- Question Part -->
 <%= form_for(@question) do |f| %>
 
-  <h1> Question <%= @question.question_num %>  <%= f.submit "Submit", class: "btn btn-primary" %> </h1>
+  <h1> Question <%= @question.question_num %> </h1>
+
+  <div class = "choice">
+    <h2> Choose Recipient </h2>
+    <%= f.radio_button :recipient_choice, 'Recipient A' %>
+    <%= f.radio_button :recipient_choice, 'Recipient B' %>
+    <%= f.submit "Submit", class: "btn btn-primary" %>
+  </div>
 
   <!-- upload donation type picture -->
   <%= image_tag (@question.getDonationTypePic), :class => "donation" %>

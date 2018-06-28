@@ -30,6 +30,7 @@ gem 'bootstrap-sass', '~> 3.0.0'
 gem "jquery-rails"
 gem 'bootstrap', git: 'https://github.com/twbs/bootstrap-rubygem'
 gem 'cancancan', '~> 2.0'
+gem "aws-sdk-s3", require: false
 
 
 

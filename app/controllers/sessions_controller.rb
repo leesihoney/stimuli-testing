@@ -1,15 +1,16 @@
 class SessionsController < ApplicationController
+
+  skip_before_action :authorize
+
   def new
   end
 
   def create
     user = User.find_by(email: params[:email])
     if user
-      puts("user exists")
       session[:user_id] = user.id # signing in
       redirect_to new_question_path
     else
-      puts("user doesn't exist")
       @user = User.new(email: params[:email], first_name: params[:first_name], last_name: params[:last_name])
       if @user.save
         redirect_to new_question_path

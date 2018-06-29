@@ -34,7 +34,7 @@ class QuestionsController < ApplicationController
         income_level: rand(6),
         poverty_level: nil,
         last_donation: rand(13),
-        total_donation: rand(92),
+        total_donation: rand(91),
         travel_time: rand(4)
         )
 
@@ -73,11 +73,16 @@ class QuestionsController < ApplicationController
       @recipientA.question_id = @question.id
       @recipientB.question_id = @question.id
 
+      puts("---------------------------------")
+      puts("Recipient A's Total Donation: %d" % [@recipientA.total_donation])
+      puts("Recipient B's Total Donation: %d" % [@recipientB.total_donation])
+      puts("---------------------------------")
+
+
       if @recipientA.save && @recipientB.save
         @question.recipientA_id = @recipientA.id
         @question.recipientB_id = @recipientB.id
         @question.save
-        puts("Recipients Saved")
       end
     else
       redirect_to results_path
@@ -98,7 +103,9 @@ class QuestionsController < ApplicationController
   def update
     @question.recipient_choice = 'A' if recipientA?
     @question.recipient_choice = 'B' if recipientB?
-    if submit?
+
+    if submit? && @question.update(question_params)
+
       redirect_to new_question_path, notice: 'Question was successfully updated.'
     else
       redirect_to errors_path, notice: "You should choose between recipient A or B"
@@ -128,11 +135,11 @@ class QuestionsController < ApplicationController
 
 
     def recipientA?
-      params[:commit] == "Recipient A"
+      params[:question][:recipient_choice] == "Recipient A"
     end
 
     def recipientB?
-      params[:commit] == "Recipient B"
+      params[:question][:recipient_choice] == "Recipient B"
     end 
 
     def submit?

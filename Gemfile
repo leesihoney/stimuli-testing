@@ -32,6 +32,9 @@ gem 'bootstrap', git: 'https://github.com/twbs/bootstrap-rubygem'
 gem 'cancancan', '~> 2.0'
 gem "aws-sdk-s3", require: false
 
+gem 'colorize'
+gem 'simple_form'
+
 
 
 # Use ActiveStorage variant

@@ -5,15 +5,19 @@
 		<% rec = record[0] %>
 		<% q = record[1] %>
 		<h2> Question <%= q.question_num %> </h2>
-		<p> Recipient: <%= q.recipient_choice %> </p>
 		<p> Donation Type: <%= q.donation_type %> </p>
-		<p> Organization Size: <%= rec.organization_size %> </p>
-		<p> Food Access Level: <%= rec.food_access %> </p>
-		<p> Income Level: <%= rec.income_level %> </p>
-		<p> Poverty Level: <%= rec.poverty_level %> </p>
-		<p> Last Donation Received: <%= rec.last_donation %> </p>
-		<p> Total Donation Received: <%= rec.total_donation %> </p>
-		<p> Travel Time: <%= rec.travel_time %> </p> 
+		<% if rec!=nil %> 
+			<p> Recipient: <%= q.recipient_choice %> </p>
+			<p> Organization Size: <%= rec.organization_size %> </p>
+			<p> Food Access Level: <%= rec.food_access %> </p>
+			<p> Income Level: <%= rec.income_level %> </p>
+			<p> Poverty Level: <%= rec.poverty_level %> </p>
+			<p> Last Donation Received: <%= rec.last_donation %> </p>
+			<p> Total Donation Received: <%= rec.total_donation %> </p>
+			<p> Travel Time: <%= rec.travel_time %> </p> 
+		<% else %>
+			<p> Has Not Answered The Question</p>
+		<% end %>
 	<% end %>
 
 	<%= link_to 'logout', logout_path %>

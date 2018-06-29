@@ -22,6 +22,7 @@ body {
   background-color:#fff;
   -webkit-font-smoothing: antialiased;
   font: normal 14px Roboto,arial,sans-serif;
+  height: 100%;
 
 }
 
@@ -36,9 +37,9 @@ body {
 	display: block;
     background-color: #EDEDED;
     padding-top: 10px;
-    padding-bottom: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-bottom: 5%;
+    padding-left: 10%;
+    padding-right: 10%;
     border-radius: 15px;
     border-color:#d2d2d2;
     border-width: 5px;
@@ -46,15 +47,15 @@ body {
 }
 .form-login form{
 	display: inline-block;
-	margin-left: auto;
-	margin-right: auto;
 }
-
+.btn-primary{
+	text-align: center;
+}
 h4 {
  border:0 solid #fff;
  border-bottom-width:1px;
  padding-bottom:10px;
- text-align: center;
+ text-align: left;
 }
 
 .form-control {
@@ -81,14 +82,6 @@ nav h1{
 	padding-right: 13%;
 	margin-left: auto;
 	margin-right: auto;
-}
-
-.jumbotron{
-	text-align: center;
-	background-image: url('./food-rescue-heroes.png');
-	background-position: 50% 50%;
-	background-size: cover;
-	color: #ffffff;
 }
 
 table th{

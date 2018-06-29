@@ -2,7 +2,6 @@ class ResultsController < ApplicationController
 	def index
 		user_id = current_user.id
 		questions = todayRecord(user_id)
-		questions.sort_by{|question| question.question_num}
 		@result = Array.new
 		questions.each do |question|
 			recipientA = Recipient.where({id: question.recipientA_id}).first
@@ -13,6 +12,8 @@ class ResultsController < ApplicationController
 				@result.push([recipientA, question])
 			elsif question.recipient_choice == "B"
 				@result.push([recipientB, question])
+			else
+				@result.push([nil, question])
 			end
 		end
 	end

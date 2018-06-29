@@ -4,31 +4,34 @@
 	<% end %>
 	<%= form_tag sessions_path do %>
 	<div class="row">
-		<div class="col-md-offset-5 col-md-3">
+		<div class = "col-md-2 align-self-center">
+		</div>
+		<div class= "col-md-4 align-self-center">
 			<div class="form-login">
 				<form>
-					<h4> Welcome to Stimuli Testing </h4>
-					<div>
-						<div class="form-control input-sm chat-input"> <%= label_tag :first_name, 'First Name' %>
-						<%= text_field_tag :first_name, params[:first_name] %></div>
-						<div class="form-control input-sm chat-input">
-							<%= label_tag :last_name, 'Last Name' %>
-							<%= text_field_tag :last_name, params[:last_name] %>
-						</div>
-						<div class="form-control input-sm chat-input">
-							<%= label_tag :email, 'Email' %>
-							<%= text_field_tag :email, params[:email] %>
-						</div>
-						</br>
-						<div class="wrapper">
-							<span class="group-btn">
-								<%= submit_tag "Start" %>
-							</span>
-						</div>
+					<h4> Welcome! </h4>
+					<%= text_field_tag :first_name, params[:first_name], placeholder: 'First Name', :class => "form-control input-sm chat-input" %>
+					</br>
+
+					<%= text_field_tag :last_name, params[:last_name], placeholder: 'Last Name', :class  => "form-control input-sm chat-input" %>
+					</br>
+
+					<%= text_field_tag :email, params[:email], placeholder: 'Email', :class => "form-control input-sm chat-input" %>
+					</br>
+					<div class = "wrapper">
+						<%= submit_tag "Start", :class => "btn btn-primary" %>
 					</div>
 				</form>
 			</div>
 		</div>
+		<div class = "col-md-4 align-self-center">
+			<h4> Our Goals / Overview </h4>
+			<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+			<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+		</div>
+		<div class = "col-md-2 align-self-center">
+		</div>
+
 	</div>
 	<% end %>
 </div>

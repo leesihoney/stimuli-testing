@@ -13,6 +13,7 @@ class SessionsController < ApplicationController
     else
       @user = User.new(email: params[:email], first_name: params[:first_name], last_name: params[:last_name])
       if @user.save
+        session[:user_id] = @user.id # signing in
         redirect_to new_question_path
       else
         redirect_to login_path, alert: "Invalid Name or email"

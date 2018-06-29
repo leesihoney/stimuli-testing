@@ -1,12 +1,6 @@
 class ApplicationController < ActionController::Base
 	protect_from_forgery with: :exception
   before_action :authorize
-	
-	rescue_from CanCan::AccessDenied do |exception|
-		flash[:error] = "Access Denied."
-		redirect_to login_path
-	end
-
 
   protected
   def authorize
@@ -43,7 +37,7 @@ class ApplicationController < ActionController::Base
     def todayRecord(uid)
       possible = Array.new
       today = DateTime.now.utc
-      records = Question.where({user_id: uid})
+      records = Question.where({user_id: uid}).order(:question_num)
       records.each do |record|
         recordDate = record.created_at
         if (recordDate.year == today.year) && (recordDate.month == today.month) && (recordDate.day == today.day)

@@ -1,3 +1,40 @@
 // Place all the styles related to the questions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+nav{
+	background-color: #f8f8f8;
+	display: inline;
+	color: black;
+	text-align: center;
+}
+
+nav img{
+	width: 40%;
+	height: 40%;
+}
+
+nav h1{
+	padding-right: 13%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+table th{
+	text-align: center;
+}
+.donation {
+	width: 80%;
+	height: 40%;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.imagePic {
+	width: 40%;
+	height: 40%;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}

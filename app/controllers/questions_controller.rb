@@ -73,12 +73,6 @@ class QuestionsController < ApplicationController
       @recipientA.question_id = @question.id
       @recipientB.question_id = @question.id
 
-      puts("---------------------------------")
-      puts("Recipient A's Total Donation: %d" % [@recipientA.total_donation])
-      puts("Recipient B's Total Donation: %d" % [@recipientB.total_donation])
-      puts("---------------------------------")
-
-
       if @recipientA.save && @recipientB.save
         @question.recipientA_id = @recipientA.id
         @question.recipientB_id = @recipientB.id

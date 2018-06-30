@@ -14,91 +14,27 @@
  */
 
 @import "bootstrap";
+@import url('https://fonts.googleapis.com/css?family=Chivo');
+@import "sessions";
+@import "questions";
+@import "instructions";
+@import "nav";
+@import "footer";
 
-
-@import url(http://fonts.googleapis.com/css?family=Roboto:400);
 
 body {
-  background-color:#fff;
+  background-color: #F5F5F5;
   -webkit-font-smoothing: antialiased;
-  font: normal 14px Roboto,arial,sans-serif;
+  font-family: 'Chivo', sans-serif;
   height: 100%;
 
 }
 
 .container {
-    padding: 25px;
+	width: 96%;
     height: auto;
     overflow-y: scroll;
-
 }
 
-.form-login {
-	display: block;
-    background-color: #EDEDED;
-    padding-top: 10px;
-    padding-bottom: 5%;
-    padding-left: 10%;
-    padding-right: 10%;
-    border-radius: 15px;
-    border-color:#d2d2d2;
-    border-width: 5px;
-    box-shadow:0 1px 0 #cfcfcf;
-}
-.form-login form{
-	display: inline-block;
-}
-.btn-primary{
-	text-align: center;
-}
-h4 {
- border:0 solid #fff;
- border-bottom-width:1px;
- padding-bottom:10px;
- text-align: left;
-}
 
-.form-control {
-    border-radius: 10px;
-}
 
-.wrapper {
-    text-align: center;
-}
-
-nav{
-	background-color: #f8f8f8;
-	display: inline;
-	color: black;
-	text-align: center;
-}
-
-nav img{
-	width: 40%;
-	height: 40%;
-}
-
-nav h1{
-	padding-right: 13%;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-table th{
-	text-align: center;
-}
-.donation {
-	width: 80%;
-	height: 40%;
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.imagePic {
-	width: 40%;
-	height: 40%;
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-}

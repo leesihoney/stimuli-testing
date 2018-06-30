@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :sessions
   resources :results
   resources :errors
+  resources :instructions
 
   get 'login' => 'sessions#new', :as => :login
   get 'logout' => 'sessions#destroy', :as => :logout

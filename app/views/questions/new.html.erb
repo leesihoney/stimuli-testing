@@ -1,3 +1,96 @@
-<%= render 'form', question: @question, recipientA: @recipientA, recipientB: @recipientB %>
 
-<%= link_to 'Back', questions_path %>
+<div class = "container">
+	<!-- Question Part -->
+  	<h1> Question <%= @question.question_num %> </h1>
+	<!-- upload donation type picture -->
+  	<h2> Donation Type </h2>
+ 	<%= image_tag (@question.getDonationTypePic), :class => "donation" %>
+
+  <!-- need to fix this button soon -->
+  <table class = "table">
+    <thead>
+      <tr>
+        <th> Recipient A </th>
+        <th> Recipient B </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td> 
+          <div class = "pics">
+            <div class = "pic">
+              <%= image_tag (@recipientA.getSizeLinksPic), :class => "imagePic"%>
+            </div>
+            <div class = "pic">
+              <%= image_tag (@recipientA.getAccessLinksAPic), :class => "imagePic"%>
+            </div>
+            <div class = "pic">
+              <%= image_tag (@recipientA.getIncomeLinksPic), :class => "imagePic"%>
+            </div>
+            <div class = "pic">
+              <%= image_tag (@recipientA.getPovertyLinksPic), :class => "imagePic"%>
+            </div>
+            <div class = "pic">
+              <%= image_tag (@recipientA.getLastDonationLinksPic), :class => "imagePic"%>
+            </div>
+            <div class = "pic">
+              <%= image_tag (@recipientA.getTotalDonationLinksPic), :class => "imagePic"%>
+            </div>
+            <div class = "pic">
+              <%= image_tag (@recipientA.getDistLinksPic), :class => "imagePic"%>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class = "pics">
+            <div class = "pic">
+              <%= image_tag (@recipientB.getSizeLinksPic), :class => "imagePic"%>
+            </div>
+            <div class = "pic">
+              <%= image_tag (@recipientB.getAccessLinksBPic), :class => "imagePic"%>
+            </div>
+            <div class = "pic">
+              <%= image_tag (@recipientB.getIncomeLinksPic), :class => "imagePic"%>
+            </div>
+            <div class = "pic">
+              <%= image_tag (@recipientB.getPovertyLinksPic), :class => "imagePic"%>
+            </div>
+            <div class = "pic">
+              <%= image_tag (@recipientB.getLastDonationLinksPic), :class => "imagePic"%>
+            </div>
+            <div class = "pic">
+              <%= image_tag (@recipientB.getTotalDonationLinksPic), :class => "imagePic"%>
+            </div>
+            <div class = "pic">
+              <%= image_tag (@recipientB.getDistLinksPic), :class => "imagePic"%>
+            </div>
+          </div>
+      </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class = "choice">
+  	<h4> Recipient Choice </h4>
+	  <%= simple_form_for(@question) do |f| %>
+	  	<%= f.input :recipient_choice, label: "", collection: ['Recipient A', 'Recipient B'], as: :radio_buttons %>
+	  	<%= f.button :submit, 'Submit', class: 'btn btn-primary'%>
+  </div>
+
+	<div class = "otherButtons">
+	 	  <%= f.button :submit, 'End Session', class: 'btn btn-default'%>
+	      <%= f.button :submit, 'Start Over', class: 'btn btn-default'%>
+	    <% end %>
+	</div>
+
+ 	<% flash.each do |name, msg| %>
+		<div class = 'alert alert-<%= name %>'>
+			<%= msg %>
+			<%= form_tag questions_path do %>
+				<%= submit_tag "Yes", :class => "btn btn-default" %>
+				<%= submit_tag "No", :class => "btn btn-danger" %>
+			<% end %>
+		</div>
+	<% end %>
+	</div>
+</div>

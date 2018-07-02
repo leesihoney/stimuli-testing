@@ -13,15 +13,6 @@
 
  */
 
-@import "bootstrap";
-@import url('https://fonts.googleapis.com/css?family=Chivo');
-@import "sessions";
-@import "questions";
-@import "instructions";
-@import "nav";
-@import "footer";
-
-
 body {
   background-color: #F5F5F5;
   -webkit-font-smoothing: antialiased;
@@ -29,6 +20,17 @@ body {
   height: 100%;
 
 }
+
+@import "nav";
+@import "footer";
+@import "bootstrap";
+@import url('https://fonts.googleapis.com/css?family=Chivo');
+@import "sessions";
+@import "questions";
+@import "instructions";
+
+
+
 
 .container {
 	width: 96%;

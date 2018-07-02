@@ -2,39 +2,83 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-nav{
-	background-color: #f8f8f8;
-	display: inline;
-	color: black;
+
+body {
+	background: white;
+}
+
+.my-navbar {
+	background-color: #F5F5F5;
+}
+h1{
 	text-align: center;
+	color: #428bca !important;
+	font-weight: bold;
 }
 
-nav img{
-	width: 40%;
-	height: 40%;
-}
-
-nav h1{
-	padding-right: 13%;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-table th{
+h2{
 	text-align: center;
 }
 .donation {
-	width: 80%;
-	height: 40%;
+	width: 50%;
+	height: 30%;
 	display: block;
-	margin-left: auto;
-	margin-right: auto;
+	margin: 1em auto;
+	border: 0.2em solid black;
+	border-radius: 0.5em;
+}
+table thead{
+	border: 0px;
+}
+table th{
+	font-size: 2em;
+	text-align: center;
 }
 
+.pics {
+	border-left: 0.1em solid black;
+	border-right: 0.1em solid black;
+	border-top: 0.1em solid black;
+	border-radius: 0.5em;
+	width: 90%;
+}
+.pic {
+	width: 100%;
+	border-bottom: 0.1em solid #696969;
+}
 .imagePic {
-	width: 40%;
-	height: 40%;
+	width: 55%;
+	height: 50%;
 	display: block;
-	margin-left: auto;
-	margin-right: auto;
+	margin: auto;
+}
+
+.choice h4{
+	text-align: center;
+}
+
+.choice form{
+	max-width: 80%;
+	text-align: center;
+	margin: 1em auto;
+	border: 0.1em solid black;
+	border-radius: 0.5em;
+	padding-bottom: 1.5em;
+}
+
+.form-check{
+	display: inline-block;
+	padding-left: 3em;
+	padding-right: 3em;
+}
+
+.collection_radio_buttons {
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+}
+
+
+.otherButtons {
+	text-align: center;
+	margin: 2em auto;
 }

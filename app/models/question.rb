@@ -5,8 +5,8 @@ class Question < ApplicationRecord
 
   def getDonationTypePic # returning string
   	foodtypeLinks = [
-    "common.jpg",
-    "lesscommon.jpg"]
+    "noborder_common_don.png",
+    "noborder_lesscommon_don.png"]
     return foodtypeLinks[donation_type]
 end
 

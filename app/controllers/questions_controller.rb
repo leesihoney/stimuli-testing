@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_action :set_question, only: [:show, :edit, :update, :destroy]
+  before_action :set_question, only: [:show, :edit, :update, :destroy, :confirmation]
 
   # GET /questions
   # GET /questions.json
@@ -24,7 +24,7 @@ class QuestionsController < ApplicationController
         income_level: rand(6),
         poverty_level: nil,
         last_donation: rand(13),
-        total_donation: rand(92),
+        total_donation: rand(91),
         travel_time: rand(4)
         )
       @recipientB = Recipient.create(
@@ -98,9 +98,30 @@ class QuestionsController < ApplicationController
     @question.recipient_choice = 'A' if recipientA?
     @question.recipient_choice = 'B' if recipientB?
 
+    # when clicking submit button 
     if submit? && @question.update(question_params)
-
       redirect_to new_question_path, notice: 'Question was successfully updated.'
+    # when clicking End Session Button
+    elsif endSession?
+      flash[:warning] = "Are you sure you want to end the testing?"
+      if yes?
+        redirect_to results_path, success: "Successfully ended the testing!"
+      elsif no?
+        flash[:warning] = nil
+      end
+    # when clicking Start Over Button
+    elsif startOver?
+      flash[:warning] = "Are you sure you want to start over?"
+      if yes?
+        questions = todayRecord(current_user.id)
+        questions.each do |question|
+          Recipient.where(question_id: question.id).destroy_all
+          Question.find(question.id).destroy
+        end
+        redirect_to new_question_path, success: "New Testing Session Begins!"
+      elsif no?
+        flash[:warning] = nil
+      end
     else
       redirect_to errors_path, notice: "You should choose between recipient A or B"
     end
@@ -140,5 +161,19 @@ class QuestionsController < ApplicationController
       params[:commit] == "Submit"
     end
 
+    def endSession?
+      params[:commit] == "End Session"
+    end
 
+    def startOver?
+      params[:commit] == "Start Over"
+    end
+
+    def yes?
+      params[:commit] == "Yes"
+    end
+
+    def no?
+      params[:commit] == "No"
+    end
 end

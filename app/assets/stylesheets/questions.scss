@@ -2,14 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
-body {
-	background: white;
-}
-
-.my-navbar {
-	background-color: #F5F5F5;
-}
 h1{
 	text-align: center;
 	color: #428bca !important;
@@ -58,7 +50,8 @@ table th{
 }
 
 .choice form{
-	max-width: 80%;
+	background-color: #F5F5F5;
+	max-width: 50%;
 	text-align: center;
 	margin: 1em auto;
 	border: 0.1em solid black;

@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_action :set_question, only: [:show, :edit, :update, :destroy, :confirmation]
+  before_action :set_question, only: [:show, :edit, :update, :destroy]
 
   # GET /questions
   # GET /questions.json
@@ -100,32 +100,13 @@ class QuestionsController < ApplicationController
 
     # when clicking submit button 
     if submit? && @question.update(question_params)
-      redirect_to new_question_path, notice: 'Question was successfully updated.'
+      redirect_to new_question_path, success: 'Question was successfully updated.'
     # when clicking End Session Button
-    elsif endSession?
-      flash[:warning] = "Are you sure you want to end the testing?"
-      if yes?
-        redirect_to results_path, success: "Successfully ended the testing!"
-      elsif no?
-        flash[:warning] = nil
-      end
-    # when clicking Start Over Button
-    elsif startOver?
-      flash[:warning] = "Are you sure you want to start over?"
-      if yes?
-        questions = todayRecord(current_user.id)
-        questions.each do |question|
-          Recipient.where(question_id: question.id).destroy_all
-          Question.find(question.id).destroy
-        end
-        redirect_to new_question_path, success: "New Testing Session Begins!"
-      elsif no?
-        flash[:warning] = nil
-      end
-    else
-      redirect_to errors_path, notice: "You should choose between recipient A or B"
+    elsif yes?
+      redirect_to results_path, success: "Successfully ended the testing!"
     end
   end
+
 
   # DELETE /questions/1
   # DELETE /questions/1.json
@@ -165,15 +146,7 @@ class QuestionsController < ApplicationController
       params[:commit] == "End Session"
     end
 
-    def startOver?
-      params[:commit] == "Start Over"
-    end
-
     def yes?
       params[:commit] == "Yes"
-    end
-
-    def no?
-      params[:commit] == "No"
     end
 end

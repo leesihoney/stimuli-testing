@@ -11,7 +11,11 @@
  * It is generally better to create a new file per style scope.
  *
 
+ *= require_self
  */
+
+ @import "bootstrap";
+ @import url('https://fonts.googleapis.com/css?family=Chivo');
 
 body {
   background-color: #F5F5F5;
@@ -23,8 +27,6 @@ body {
 
 @import "nav";
 @import "footer";
-@import "bootstrap";
-@import url('https://fonts.googleapis.com/css?family=Chivo');
 @import "sessions";
 @import "questions";
 @import "instructions";

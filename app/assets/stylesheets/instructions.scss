@@ -1,3 +1,24 @@
 // Place all the styles related to the instructions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.instruction {
+	width: 50%;
+	margin: 2em auto;
+}
+
+.factorExp{
+	margin: 0 auto;
+}
+
+.factor{
+	display: block;
+	width: 60%;
+	height: 50%;
+	margin: 1em auto;
+}
+
+.my-btn {
+	display: block;
+	margin: 3em auto 5em;
+}

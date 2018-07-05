@@ -1,5 +1,33 @@
-<h1> Instruction Page </h1>
+<div class = "container">
+	<h1> Instruction </h1>
 
-<p> I don't know what to write </p>
+	<p class = "instruction"> Instructions for how to use the stimuli go here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
 
-<%= link_to "Home", sessions_path %>
+	<div class = "factorExp">
+		<h2> Factors </h2>
+
+		<p class = "instruction"> Explanations of the factors used in the stimuli - explanations of each factor will also be available while using the stimuli. Lorep ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. </p>
+	</div>
+
+	<div class = "factorPics">
+		<%= image_tag ("factor_common_don.png"), :class => "factor" %>
+		<%= image_tag ("factor_lesscommon_don.png"), :class => "factor" %>
+		<%= image_tag ("factor_size.png"), :class => "factor" %>
+		<%= image_tag ("factor_access.png"), :class => "factor" %>
+		<%= image_tag ("factor_income.png"), :class => "factor" %>
+		<%= image_tag ("factor_poverty.png"), :class => "factor" %>
+		<%= image_tag ("factor_distance.png"), :class => "factor" %>
+		<%= image_tag ("factor_last_don.png"), :class => "factor" %>
+		<%= image_tag ("factor_total_don.png"), :class => "factor" %>
+
+		<%= form_tag instructions_path do %>
+			<%= submit_tag "Start", :class => "my-btn btn btn-primary btn-lg" %>
+		<% end %>
+	</div>
+</div>
+
+
+
+
+
+

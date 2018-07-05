@@ -1,24 +1,8 @@
-<div class = "container">
-	<h1> Testing Result </h1>
+<div class = "container results">
 
-	<% @result.each do |record| %>
-		<% rec = record[0] %>
-		<% q = record[1] %>
-		<h2> Question <%= q.question_num %> </h2>
-		<p> Donation Type: <%= q.donation_type %> </p>
-		<% if rec!=nil %> 
-			<p> Recipient: <%= q.recipient_choice %> </p>
-			<p> Organization Size: <%= rec.organization_size %> </p>
-			<p> Food Access Level: <%= rec.food_access %> </p>
-			<p> Income Level: <%= rec.income_level %> </p>
-			<p> Poverty Level: <%= rec.poverty_level %> </p>
-			<p> Last Donation Received: <%= rec.last_donation %> </p>
-			<p> Total Donation Received: <%= rec.total_donation %> </p>
-			<p> Travel Time: <%= rec.travel_time %> </p> 
-		<% else %>
-			<p> Has Not Answered The Question</p>
-		<% end %>
-	<% end %>
+	<h3> Thank you for your participation </h3>
+	<p> You have answered <%= @count %> / 100 questions. We truly apprecipate your support. Please email to dkusbit@gmail.com if you have any questions. </p>
 
-	<%= link_to 'logout', logout_path %>
+	<%= link_to "Logout", logout_path, :class => "btn btn-primary btn-lg" %>
+
 </div>

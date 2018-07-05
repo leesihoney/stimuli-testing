@@ -16,14 +16,14 @@ class SessionsController < ApplicationController
         session[:user_id] = @user.id # signing in
         redirect_to new_question_path
       else
-        redirect_to login_path, alert: "Invalid Name or email"
+        redirect_to login_path, danger: "Invalid Name or email"
       end
     end
   end
 
   def destroy
     session[:user_id] = nil
-    redirect_to login_path, alert: "Successfully Logged Out"
+    redirect_to login_path, success: "Successfully Logged Out"
   end
 
 

@@ -6,11 +6,18 @@ h1{
 	text-align: center;
 	color: #428bca !important;
 	font-weight: bold;
+	margin-bottom: 1.5em;
 }
 
 h2{
 	text-align: center;
 }
+
+.recOption{
+    text-align: center;
+    padding-bottom: 1em;
+}
+
 .donation {
 	width: 50%;
 	height: 30%;
@@ -27,24 +34,28 @@ table th{
 	text-align: center;
 }
 
-.pics {
-	border-left: 0.1em solid black;
-	border-right: 0.1em solid black;
-	border-top: 0.1em solid black;
+.picsA, .picsB {
+	border: 0.1em solid #696969;
 	border-radius: 0.5em;
-	width: 90%;
 }
+
+
 .pic {
-	width: 100%;
 	border-bottom: 0.1em solid #696969;
 }
+
+
 .imagePic {
 	width: 55%;
 	height: 50%;
 	display: block;
-	margin: auto;
+	margin: 0 auto;
 }
 
+.choice {
+	margin: 0 auto;
+	display: block;
+}
 .choice h4{
 	text-align: center;
 }
@@ -53,7 +64,7 @@ table th{
 	background-color: #F5F5F5;
 	max-width: 50%;
 	text-align: center;
-	margin: 1em auto;
+	margin: 0 auto;
 	border: 0.1em solid black;
 	border-radius: 0.5em;
 	padding-bottom: 1.5em;
@@ -74,4 +85,28 @@ table th{
 .otherButtons {
 	text-align: center;
 	margin: 2em auto;
+}
+
+@media only screen and (min-width: 768px) {
+	.contents{
+		padding: 2em 0;
+		display: block;
+		margin: 0 auto;
+	}
+	.picsA{
+		display: inline-block;
+		float: left;
+		width: 45%;
+		margin-right: 0;
+		margin-left: auto;
+	}
+	.picsB{
+		display: inline-block;
+		float: right;
+		width: 45%;
+		margin-left: 0;
+		margin-right: auto;
+	}
+
+
 }

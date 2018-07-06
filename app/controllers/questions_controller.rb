@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
-  
+
   # GET /questions
   # GET /questions.json
   def index
@@ -103,6 +103,7 @@ class QuestionsController < ApplicationController
       redirect_to new_question_path, success: 'Question was successfully updated.'
     # when clicking End Session Button
     elsif yes?
+      puts("Pressed Yes")
       redirect_to results_path, success: "Successfully ended the testing!"
     end
   end

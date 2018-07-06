@@ -34,6 +34,7 @@ gem "aws-sdk-s3", require: false
 
 gem 'colorize'
 gem 'simple_form'
+gem 'responders', '~> 2.0'
 
 
 

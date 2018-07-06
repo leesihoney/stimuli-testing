@@ -70,29 +70,11 @@
 
   <div class = "row">
   	<div class = "otherButtons">
-  	 	  <%= f.button :submit, 'End Session', class: 'btn btn-default', data: {toggle: "modal", target: "#endSessionModal"} %>
+  	 	  <%= link_to 'End Session', results_path, class: 'btn btn-default', data: {confirm: 'Are you sure?'} %>
+        <% end %>
   	</div>
   </div>
 
-
-  <!-- Modal -->
-  <div class="modal fade" id="endSessionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel"> Warning! </h5>
-        </div>
-        <div class="modal-body">
-          Do you want to end the testing?
-        </div>
-        <div class="modal-footer">
-          <%= f.button :submit, 'No', class: 'btn btn-secondary', data: {dismiss: 'modal'} %>
-          <%= f.button :submit, 'Yes', class: 'btn btn-primary' %>
-   <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 
 <script>

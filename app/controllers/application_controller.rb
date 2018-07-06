@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   protected
   def authorize
     unless User.find_by(id: session[:user_id])
-      redirect_to login_url, notice: "Login needed"
+      redirect_to login_url, warning: "Login needed"
     end
   end
 

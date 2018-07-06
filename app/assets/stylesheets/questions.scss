@@ -47,7 +47,7 @@ table th{
 
 .imagePic {
 	width: 55%;
-	height: 50%;
+	height: 50%;	
 	display: block;
 	margin: 0 auto;
 }
@@ -56,7 +56,7 @@ table th{
 	margin: 0 auto;
 	display: block;
 }
-.choice h4{
+.choice .choiceTitle{
 	text-align: center;
 }
 
@@ -88,19 +88,15 @@ table th{
 }
 
 @media only screen and (min-width: 768px) {
-	.contents{
-		padding: 2em 0;
-		display: block;
-		margin: 0 auto;
-	}
-	.picsA{
+	.contentA{
 		display: inline-block;
 		float: left;
 		width: 45%;
 		margin-right: 0;
 		margin-left: auto;
+		text-align: center;
 	}
-	.picsB{
+	.contentB{
 		display: inline-block;
 		float: right;
 		width: 45%;

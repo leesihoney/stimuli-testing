@@ -1,15 +1,18 @@
 
 <div class = "container">
 	<!-- Question Part -->
-  	<h1> Question <%= @question.question_num %> </h1>
+  	<h1 class = "questionNum"> Question <%= @question.question_num %> </h1>
 	<!-- upload donation type picture -->
-  	<h2> Donation Type </h2>
+  	<h2 class = "DonationType"> Donation Type </h2>
  	<%= image_tag (@question.getDonationTypePic), :class => "donation" %>
 
+  <!-- Did not use bootstrap columns but used rows to separate sections -->
   <div class = "row">
     <div class = "contentA">
       <h2> Recipient A </h2>
+      <!-- draws a border around the images -->
       <div class = "picsA">
+        <!-- draws a border at the bottom for the image -->
         <div class = "pic">
           <%= image_tag (@recipientA.getSizeLinksPic), :class => "imagePic"%>
         </div>
@@ -28,13 +31,16 @@
         <div class = "pic">
           <%= image_tag (@recipientA.getTotalDonationLinksPic), :class => "imagePic"%>
         </div>
+        <!-- not in class = "pic" because this should not draw the border at the bottom -->
         <%= image_tag (@recipientA.getDistLinksPic), :class => "imagePic"%>
       </div>
     </div>
 
     <div class = "contentB">
       <h2> Recipient B </h2>
+      <!-- draws a border around the images -->
       <div class = "picsB">
+        <!-- draws a border at the bottom for the image -->
         <div class = "pic">
           <%= image_tag (@recipientB.getSizeLinksPic), :class => "imagePic"%>
         </div>
@@ -53,6 +59,7 @@
         <div class = "pic">
           <%= image_tag (@recipientB.getTotalDonationLinksPic), :class => "imagePic"%>
         </div>
+        <!-- not in class = "pic" because this should not draw the border at the bottom -->
         <%= image_tag (@recipientB.getDistLinksPic), :class => "imagePic"%>
       </div>
     </div>

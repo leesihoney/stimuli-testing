@@ -52,10 +52,12 @@ body{
 }
 
 // does not affect other h1 elements
-.title h1{
+.title{
     text-align: center;
     color: #428bca;
     font-weight: bold;
+    margin-bottom: 1.5em;
+
 }
 
 .loginTitle {

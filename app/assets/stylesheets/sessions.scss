@@ -7,26 +7,39 @@ body{
 }
 
 .form-login {
+    width: 85%;
 	display: block;
     background-color: #FFFFFF;
-    padding-top: 2%;
-    padding-bottom: 5%;
-    padding-left: 10%;
-    padding-right: 10%;
+    padding: 5% 10%;
     border-radius: 1em;
     border-style: solid;
     border-color: #808080 !important;
     border-width: 0.1em;
 }
+
 .form-login form{
 	display: inline-block;
+}
+.form-login input {
+    height: 40px;
+    margin-bottom: 5%;
 }
 .btn-primary{
 	text-align: center;
 }
 
-.row {
-    padding-bottom: 1.5em;
+@media only screen and (min-width: 992px) {
+    .form-login{
+        margin-left: 15%;
+    }
+    .goals{
+        width: 45%;
+        padding-left: 5%;
+    }
+
+    .goals .goalsTxt{
+        font-size: 0.95em;
+    }
 }
 
 .title h1{
@@ -36,12 +49,13 @@ body{
 }
 
 .loginTitle {
- padding-bottom: 0.7em;
- text-align: left;
+    padding-bottom: 0.7em;
+    text-align: left;
+    font-weight: bold;
 }
 
 .form-control {
-    border-radius: 10px;
+    border-radius: 0.5em;
 }
 
 .wrapper {

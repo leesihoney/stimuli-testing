@@ -13,15 +13,27 @@
 			<div class= "col-md-6 align-self-center">
 				<div class="form-login">
 					<form>
-						<h4 class = "loginTitle"> Get Started </h4>
-						<%= text_field_tag :first_name, params[:first_name], placeholder: 'First Name', :class => "form-control input-sm chat-input" %>
+						<% if logged_in? %>
+							<h4 class = "loginTitle"> Already Logged In </h4>
+							<p> First Name: <%= @user.first_name %> </p>
+							<p> Last Name: <%= @user.last_name %> </p>
+							<p> Email: <%= @user.email %> </p>
+							<br>
+							<div class = "wrapper">
+								<%= link_to"Continue", new_question_path, :class => "btn btn-primary" %>
+								<%= link_to "End Session", results_path, :class => "btn btn-danger" %>
+							</div>
+						<% else %>
+							<h4 class = "loginTitle"> Get Started </h4>
+							<%= text_field_tag :first_name, params[:first_name], placeholder: 'First Name', :class => "form-control input-sm chat-input" %>
 
-						<%= text_field_tag :last_name, params[:last_name], placeholder: 'Last Name', :class  => "form-control input-sm chat-input" %>
+							<%= text_field_tag :last_name, params[:last_name], placeholder: 'Last Name', :class  => "form-control input-sm chat-input" %>
 
-						<%= text_field_tag :email, params[:email], placeholder: 'Email', :class => "form-control input-sm chat-input" %>
-						<div class = "wrapper">
-							<%= submit_tag "Start", :class => "btn btn-primary" %>
-						</div>
+							<%= text_field_tag :email, params[:email], placeholder: 'Email', :class => "form-control input-sm chat-input" %>
+							<div class = "wrapper">
+								<%= submit_tag "Start", :class => "btn btn-primary" %>
+							</div>
+						<% end %>
 					</form>
 				</div>
 			</div>

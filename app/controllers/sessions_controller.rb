@@ -3,6 +3,9 @@ class SessionsController < ApplicationController
   skip_before_action :authorize
 
   def new
+    if logged_in?
+      @user = current_user
+    end
   end
 
   def create

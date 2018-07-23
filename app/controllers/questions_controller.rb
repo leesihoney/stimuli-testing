@@ -51,6 +51,14 @@ class QuestionsController < ApplicationController
         @recipientB.last_donation = 0
       end
 
+      if @recipientA.last_donation == 12
+        @recipientA.total_donation = rand(1..5)
+      end
+
+      if @recipientB.last_donation == 12
+        @recipientB.total_donation = rand(1..5)
+      end
+
       # set both recipientA and recipient B's poverty level logically 
 
       if @recipientA.income_level == 0

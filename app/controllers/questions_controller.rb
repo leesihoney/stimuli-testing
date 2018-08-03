@@ -14,8 +14,18 @@ class QuestionsController < ApplicationController
   # GET /questions/new
   def new
     user_id = current_user.id
-    q_num = todayRecord(user_id).length+1
-    if q_num<=200
+    record = Question.where({user_id: user_id}).order(:question_num)
+    lastRecord = Question.where({user_id: user_id}).order(:question_num).last
+
+    # check whether the last record has not been chosen
+    if lastRecord != nil and lastRecord.recipient_choice == nil
+      # continue with that question
+      @question = lastRecord
+      @recipientA = Recipient.where({id: lastRecord.recipientA_id}).first
+      @recipientB = Recipient.where({id: lastRecord.recipientB_id}).first
+
+    else
+      q_num = record.length+1
       # initializing recipients
       @recipientA = Recipient.create(
         question_id: nil,
@@ -86,8 +96,6 @@ class QuestionsController < ApplicationController
         @question.recipientB_id = @recipientB.id
         @question.save
       end
-    else
-      redirect_to results_path
     end
   end
 

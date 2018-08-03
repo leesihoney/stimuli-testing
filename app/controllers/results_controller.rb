@@ -1,10 +1,10 @@
 class ResultsController < ApplicationController
 	def index
 		user_id = current_user.id
-		questions = todayRecord(user_id)
+		@questions = Question.where({user_id: user_id}).order(:question_num)
 		@count = 0
 		@result = Array.new
-		questions.each do |question|
+		@questions.each do |question|
 			recipientA = Recipient.where({id: question.recipientA_id}).first
 			recipientB = Recipient.where({id: question.recipientB_id}).first
 			if question.recipient_choice == "A"

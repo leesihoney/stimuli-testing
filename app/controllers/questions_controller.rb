@@ -15,7 +15,7 @@ class QuestionsController < ApplicationController
   def new
     user_id = current_user.id
     q_num = todayRecord(user_id).length+1
-    if q_num<=100
+    if q_num<=200
       # initializing recipients
       @recipientA = Recipient.create(
         question_id: nil,
